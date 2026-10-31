@@ -259,6 +259,12 @@
     /* barra superior: navegação só quando cabe, sem barra de rolagem visível */
     #nav-links { overflow: hidden; }
     body[data-mode="game"] #nav-links { gap: 1.1rem; }
+    @media (max-width: 400px) {
+      header > div { gap: .5rem; }
+      header .btn-cartucho { padding-left: .55rem; padding-right: .55rem; }
+      body[data-mode="game"] header .som-btn { padding: .25rem .4rem; }
+    }
+    @media (max-width: 340px) { body[data-mode="game"] header a[href="#inicio"] .view-game { display: none; } }
     .desafio { position: relative; }
     /* mascote do desafio — celular: flutua à direita do título */
     .desafio-mascote { float: right; position: relative; margin: 4px 4px 6px 14px; pointer-events: none; }
