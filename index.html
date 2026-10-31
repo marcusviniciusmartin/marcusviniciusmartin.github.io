@@ -256,6 +256,9 @@
       #sobre .view-exec h3.eyebrow { margin-top: 3rem; }
       .recomendacao blockquote { font-size: 1.05rem; }
     }
+    /* barra superior: navegação só quando cabe, sem barra de rolagem visível */
+    #nav-links { overflow: hidden; }
+    body[data-mode="game"] #nav-links { gap: 1.1rem; }
     .desafio { position: relative; }
     /* mascote do desafio — celular: flutua à direita do título */
     .desafio-mascote { float: right; position: relative; margin: 4px 4px 6px 14px; pointer-events: none; }
@@ -446,28 +449,28 @@
      ═════════════════════════════════════════════════════════════════════════ -->
 <header class="sticky top-0 z-50 border-b b-line backdrop-blur" style="background: color-mix(in srgb, var(--bg) 88%, transparent);">
   <div class="max-w-6xl mx-auto px-4 h-16 flex items-center gap-4">
-    <a href="#inicio" class="shrink-0">
+    <a href="#inicio" class="shrink-0 mr-auto lg:mr-0">
       <span class="view-exec font-display text-lg font-semibold">Marcus Martin</span>
       <span class="view-game px text-[10px] t-accent">P1·MARCUS</span>
     </a>
 
-    <nav id="nav-links" class="hidden md:flex gap-5 text-sm t-muted overflow-x-auto"></nav>
+    <nav id="nav-links" class="hidden lg:flex flex-1 gap-5 text-sm t-muted min-w-0" aria-label="Seções"></nav>
 
     <!-- Contador de exploração (só no modo game): feedback, não pontos -->
-    <div class="view-game ml-auto hidden lg:flex items-center gap-3 term text-lg t-muted whitespace-nowrap">
-      <a href="#atlas" title="Regiões exploradas">🗺 <span id="hud-reg" class="t-ink">0/0</span><span class="hidden 2xl:inline"> regiões</span></a>
-      <a href="#contato" title="Competências descobertas">◆ <span id="hud-comp" class="t-ink">0/0</span><span class="hidden 2xl:inline"> competências</span></a>
+    <div class="view-game hidden xl:flex items-center gap-3 term text-lg t-muted whitespace-nowrap">
+      <a href="#atlas" title="Regiões exploradas" aria-label="Regiões exploradas">🗺 <span id="hud-reg" class="t-ink">0/0</span></a>
+      <a href="#contato" title="Competências descobertas" aria-label="Competências descobertas">◆ <span id="hud-comp" class="t-ink">0/0</span></a>
     </div>
 
     <!-- CONTROLES DE SOM (modo game) -->
     <div class="view-game flex items-center gap-1 shrink-0">
-      <button class="som-btn" data-designer aria-pressed="false" aria-label="Mostrar o design por trás de cada elemento" title="Ver o design por trás">🔍<span class="hidden sm:inline"> design</span></button>
-      <button class="som-btn" data-som="sfx" aria-label="Ligar ou desligar efeitos sonoros">🔊<span class="hidden sm:inline"> SFX</span></button>
-      <button class="som-btn" data-som="musica" aria-label="Ligar ou desligar a trilha">♪<span class="hidden sm:inline"> trilha</span></button>
+      <button class="som-btn" data-designer aria-pressed="false" aria-label="Mostrar o design por trás de cada elemento" title="Modo Designer: ver o design por trás">🔍<span class="hidden 2xl:inline"> design</span></button>
+      <button class="som-btn" data-som="sfx" aria-label="Ligar ou desligar efeitos sonoros" title="Efeitos sonoros">🔊</button>
+      <button class="som-btn" data-som="musica" aria-label="Ligar ou desligar a trilha" title="Trilha sonora">♪</button>
     </div>
 
     <!-- BOTÃO DE MODO ("cartucho") -->
-    <button data-toggle-mode class="btn-cartucho ml-auto sm:ml-0 shrink-0" aria-label="Alternar entre Modo Executivo e Modo Gamificado">
+    <button data-toggle-mode class="btn-cartucho shrink-0" aria-label="Alternar entre Modo Executivo e Modo Gamificado">
       <span class="view-exec">▶ PRESS START</span>
       <span class="view-game">◀ <span class="hidden sm:inline">MODO </span>EXECUTIVO</span>
     </button>
