@@ -555,7 +555,7 @@
       <!-- banner = capa do LinkedIn (assets/img/capa-quest.webp) -->
       <div class="relative">
         <img src="assets/img/capa-quest.webp" alt="Personagem em pixel art girando a engrenagem da inovação rumo ao quadro de tarefas" width="1400" height="349" class="block w-full h-auto border-b-2" style="border-color:var(--accent)" />
-        <div id="hero-sprite" class="sprite" style="--s:3" title="Clique para dizer oi" role="img" aria-label="Personagem de Marcus em pixel art"></div>
+        <div id="hero-sprite" class="sprite" style="--s:3" title="Clique para dizer oi" role="button" tabindex="0" aria-label="Dizer oi para o personagem de Marcus"></div>
       </div>
      <div class="p-6 md:p-10">
       <div class="flex items-center gap-4 md:gap-6">
@@ -2525,7 +2525,7 @@
         <div class="lente-card"><p class="lente-k">3 · JOGADORES</p><p>Recrutadores com pouco tempo, gestores de RH e inovação, e quem quer ver a gamificação por dentro. Por isso existem classes e um Modo Executivo.</p></div>
         <div class="lente-card"><p class="lente-k">4 · CICLOS DE ATIVIDADE</p><p>Engajamento: visitar uma região → feedback (região marcada e novas competências). Progressão: embarque → rota no mapa → Lente do Designer.</p></div>
         <div class="lente-card"><p class="lente-k">5 · POR QUE SEM PONTOS E SEM RANKING</p><p>Pontos por rolar a tela seriam PBL vazio, e ranking entre visitantes não faria sentido nenhum. Aqui o feedback é informação: o que você já viu e o que falta.</p></div>
-        <div class="lente-card"><p class="lente-k">6 · ÉTICA E VOLUNTARIEDADE</p><p>O Modo Gamificado é opcional. Seu progresso fica só no seu navegador: nada é rastreado ou enviado.</p></div>
+        <div class="lente-card"><p class="lente-k">6 · ÉTICA E VOLUNTARIEDADE</p><p>O Modo Gamificado é opcional e o seu progresso fica só no seu navegador. O site conta visitas e "ois" de forma anônima, sem cookies e sem identificar ninguém. O contador de ois mostra um marco pessoal, nunca um ranking.</p></div>
       </div>
     </details>
   </div>
@@ -2612,7 +2612,15 @@
     if (mode === 'game') observeBadges();
   }
   const initial = ['game', 'exec'].includes(params.get('modo')) ? params.get('modo') : store.get('pf-mode', 'exec');
-  window.PF = { setMode, toast: (t) => toast(t) };
+  // eventos anônimos para o painel do GoatCounter (se o script não carregar, nada acontece)
+  const gc = (path, title) => { try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path, title, event: true }); } catch {} };
+  window.PF = { setMode, toast: (t) => toast(t), gc };
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href]'); if (!a) return;
+    const h = a.getAttribute('href');
+    if (h.endsWith('curriculo.pdf')) gc('curriculo-pdf', 'Abriu o currículo (PDF)');
+    else if (h.includes('linkedin.com/in/marcusvmartin')) gc('linkedin', 'Clicou no LinkedIn');
+  });
   $$('[data-toggle-mode]').forEach(b => b.addEventListener('click', () => document.dispatchEvent(new CustomEvent('pf:alternar'))));
 
   /* ---------- 3. MENU AUTOMÁTICO (só lâminas estruturais) ---------- */
@@ -2905,6 +2913,7 @@
   let aberta = null;
   function abrirRegiao(r) {
     fecharRegiao(true);
+    gc('regiao-' + r.id, 'Abriu a região: ' + r.projeto);
     const v = r.el.querySelector('.view-game'); if (!v) return;
     aberta = { r, v };
     corpo.appendChild(v);
@@ -3235,7 +3244,27 @@
       b.style.left = (heroSprite.offsetLeft + 6 * s) + 'px'; b.style.top = (heroSprite.offsetTop - 26 * s) + 'px';
       host.appendChild(b); setTimeout(() => b.remove(), 1900);
     };
-    heroSprite.addEventListener('click', () => { acenando = 8; sfx('oi'); balao(['coracao', 'nota', 'ideia', 'exclama'][Math.floor(Math.random() * 4)]); });
+    // "Você foi a Nª pessoa a dar oi!": marco pessoal (sem ranking). Conta uma vez por visitante;
+    // se o contador não responder, o aceno continua normal e nada é exibido.
+    let oiAnunciado = false;
+    async function contarOi() {
+      const anunciar = n => { if (n > 0 && window.PF.toast) window.PF.toast(`Você foi a ${n}ª pessoa a dar oi!`); };
+      const salvo = store.get('pf-oi', null);
+      if (salvo) { if (!oiAnunciado) { oiAnunciado = true; anunciar(salvo); } return; }
+      if (oiAnunciado) return; oiAnunciado = true;
+      let antes = 0;
+      try {
+        const r = await fetch('https://marcusvmartin.goatcounter.com/counter/oi-bonequinho.json', { cache: 'no-store' });
+        if (r.ok) { const j = await r.json(); antes = parseInt(String(j.count).replace(/\D/g, ''), 10) || 0; }
+        else if (r.status !== 404) return;          // 404 = ninguém deu oi ainda
+      } catch { return; }
+      if (!(window.goatcounter && window.goatcounter.count)) return;
+      window.PF.gc('oi-bonequinho', 'Deu oi para o bonequinho');
+      store.set('pf-oi', antes + 1); anunciar(antes + 1);
+    }
+    const darOi = () => { acenando = 8; sfx('oi'); balao(['coracao', 'nota', 'ideia', 'exclama'][Math.floor(Math.random() * 4)]); contarOi(); };
+    heroSprite.addEventListener('click', darOi);
+    heroSprite.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); darOi(); } });
     document.addEventListener('pf:classe', () => { if (body.dataset.mode === 'game') { acenando = 6; balao('ideia'); } });
   }
 
@@ -3274,6 +3303,7 @@
 
   async function entrar(curta) {
     if (rodando) return; rodando = true; pular = false;
+    if (window.PF && window.PF.gc) window.PF.gc('modo-jogo', 'Entrou no modo jogo');
     audio(); sfx('ligar');
     ov.hidden = false; stage.style.visibility = 'hidden'; txt.style.visibility = 'hidden';
     await dissolve(true, curta ? 220 : 380);
@@ -3337,5 +3367,12 @@
 })();
 </script>
 
+<!-- ═════════════════════════════════════════════════════════════════════════
+     [I] CONTAGEM ANÔNIMA (GoatCounter: sem cookies, sem identificar ninguém)
+     Painel: https://marcusvmartin.goatcounter.com
+     Para não contar as suas próprias visitas, abra uma vez:
+     https://marcusviniciusmartin.github.io/#toggle-goatcounter
+     ═════════════════════════════════════════════════════════════════════════ -->
+<script data-goatcounter="https://marcusvmartin.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
