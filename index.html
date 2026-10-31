@@ -265,6 +265,12 @@
       body[data-mode="game"] header .som-btn { padding: .25rem .4rem; }
     }
     @media (max-width: 340px) { body[data-mode="game"] header a[href="#inicio"] .view-game { display: none; } }
+    /* abas dos painéis no celular: grade 2×2 alinhada, em vez de quebrar em linhas soltas */
+    @media (max-width: 520px) {
+      #painel-corpo .abas { display: grid; grid-template-columns: 1fr 1fr; gap: .35rem; border-bottom: none; }
+      #painel-corpo .aba { border: 2px solid var(--line); margin-bottom: 0; text-align: left; display: flex; align-items: center; gap: .4rem; }
+      #painel-corpo .aba[aria-selected="true"] { border-color: var(--accent); border-bottom: 2px solid var(--accent); }
+    }
     .desafio { position: relative; }
     /* mascote do desafio — celular: flutua à direita do título */
     .desafio-mascote { float: right; position: relative; margin: 4px 4px 6px 14px; pointer-events: none; }
@@ -937,7 +943,15 @@
           <span class="placa" style="left:81.786%;top:52.917%;width:13.571%">R3 Ecolab<br>2025</span>
         </div>
       </div>
-      <p class="term text-xl t-muted mt-3">Clique num quadro para abrir o projeto premiado.</p>
+      <!-- no celular as placas somem (texto pequeno demais): a mesma informação vira lista -->
+      <ul class="sala-lista term text-xl mt-4 space-y-2 sm:hidden">
+        <li><a href="#uniap" class="hover:underline"><span class="t-award">★</span> Campeãs da Inovação 2026 <span class="t-muted">· UNIAP+</span></a></li>
+        <li><a href="#bem-estar-dela" class="hover:underline"><span class="t-award">★</span> Woman’s Legacy 2026 <span class="t-muted">· Bem-Estar DELA</span></a></li>
+        <li><a href="#bem-estar-dela" class="hover:underline"><span class="t-award">★</span> Mastercana Social 2026 <span class="t-muted">· Bem-Estar DELA</span></a></li>
+        <li><a href="#esg-a-mesa" class="hover:underline"><span class="t-award">★</span> ECO Amcham 2025 <span class="t-muted">· ESG à Mesa</span></a></li>
+        <li><a href="#esg-a-mesa" class="hover:underline"><span class="t-award">★</span> R3 Ecolab 2025 <span class="t-muted">· ESG à Mesa</span></a></li>
+      </ul>
+      <p class="term text-xl t-muted mt-3"><span class="hidden sm:inline">Clique num quadro</span><span class="sm:hidden">Toque num quadro ou num prêmio</span> para abrir o projeto premiado.</p>
     </div>
     <div class="view-exec grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
       <a class="badge" href="https://www.amanha.com.br" target="_blank" rel="noopener"><div class="seal" data-logo="assets/badges/campeas-inovacao-2026.png"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M7 3h10v3a5 5 0 0 1-10 0V3Zm-4 1h3v2a3 3 0 0 1-3-2Zm15 0h3a3 3 0 0 1-3 2V4ZM11 13h2v4h3v3H8v-3h3v-4Z"/></svg></div>
