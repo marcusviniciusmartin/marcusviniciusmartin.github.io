@@ -1,0 +1,5 @@
+Logotipos usados nos selos (atributo data-logo no index.html).
+Para trocar um logotipo, substitua o arquivo mantendo o MESMO nome:
+  campeas-inovacao-2026.png · womens-legacy-2026.png · mastercana-2026.png
+  eco-amcham.png · r3-ecolab.png · usp-esalq.png
+Se um arquivo faltar, o selo volta a mostrar o ícone desenhado.
