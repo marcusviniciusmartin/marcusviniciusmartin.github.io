@@ -310,7 +310,15 @@
     .case-completo > .conteudo > :first-child { margin-top: .5rem !important; }
     .outro-item { border-bottom: 1px solid var(--line); }
     .outro-item .view-exec { --accent: var(--t-accent); --panel-2: var(--t-panel2); }
-    .outro-item > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 6px 1fr auto; gap: 1rem; align-items: start; padding: 1.25rem 0; }
+    .outro-item > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 200px 1fr auto auto; gap: 1.25rem; align-items: center; padding: 1.25rem 0; }
+    .outro-item .o-cena { position: relative; aspect-ratio: 384 / 160; border-radius: 12px; overflow: hidden; background: linear-gradient(135deg, var(--cc), color-mix(in srgb, var(--cc) 55%, #0A0C16)); border: 1px solid var(--line); }
+    .outro-item .o-cena img { width: 100%; height: 100%; object-fit: cover; image-rendering: pixelated; display: block; }
+    .outro-item .o-cena::after { content: ""; position: absolute; inset: auto 0 0 0; height: 4px; background: var(--cc); }
+    .outro-item .o-fotos { display: flex; gap: .5rem; }
+    .outro-item .o-fotos img { height: 128px; width: auto; border-radius: 10px; border: 1px solid var(--line); object-fit: cover; }
+    .outro-item .o-premios { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .5rem; }
+    .outro-item .o-premios span { font-size: .72rem; font-weight: 600; color: var(--award); background: var(--award-soft); border-radius: 999px; padding: .1rem .55rem; }
+    @media (max-width: 767px) { .outro-item > summary { grid-template-columns: 1fr; gap: .75rem; } .outro-item .o-fotos img { height: 140px; } }
     .outro-item > summary::-webkit-details-marker { display: none; }
     .outro-item > summary .barra { align-self: stretch; border-radius: 4px; background: var(--cc); }
     .outro-item > summary .abrir { font-size: .875rem; color: var(--accent); white-space: nowrap; }
@@ -511,7 +519,7 @@
       governança, indicador e retorno.
     </p>
     <!-- STATUS PROFISSIONAL (troque a frase aqui e na versão gamificada) -->
-    <p class="status-linha mt-6"><span class="status-dot" aria-hidden="true"></span>Aberto a conversas sobre engajamento, aprendizagem e gamificação que geram resultado mensurável.</p>
+    <p class="status-linha mt-6"><span class="status-dot" aria-hidden="true"></span>Interesse em projetos de governança, engajamento e gamificação que geram resultado mensurável.</p>
     <div class="mt-8 flex flex-wrap gap-3">
       <a href="#atlas" class="btn-accent rounded-full px-6 py-3 font-medium">Ver projetos</a>
       <a href="https://www.linkedin.com/in/marcusvmartin/" target="_blank" rel="noopener" class="btn-ghost rounded-full px-6 py-3 font-medium inline-flex items-center gap-2"><img src="assets/ui/linkedin.png" alt="" width="18" height="18" class="li-logo">LinkedIn ↗</a>
@@ -581,7 +589,7 @@
         </div>
       </div>
       <p class="term text-2xl md:text-3xl mt-4">Classe: <span style="color:var(--magenta)">Engenheiro de Engajamento</span> · Guilda: Apetit / DelaFoods</p>
-      <p class="term text-xl md:text-2xl mt-2 t-muted"><span class="t-accent blink" aria-hidden="true">●</span> STATUS: aberto a conversas sobre engajamento, aprendizagem e gamificação que geram resultado mensurável.</p>
+      <p class="term text-xl md:text-2xl mt-2 t-muted"><span class="t-accent blink" aria-hidden="true">●</span> STATUS: interesse em projetos de governança, engajamento e gamificação que geram resultado mensurável.</p>
 
       <div class="mt-8 grid md:grid-cols-2 gap-8">
         <!-- como jogar (embarque): substitui as barras de habilidade autoavaliadas -->
@@ -626,6 +634,116 @@
 </section>
 <!-- ▲▲▲ FIM LÂMINA 01 — HERO ▲▲▲ -->
 
+
+<!-- ═════════════════════════════════════════════════════════════════════════
+     ▼▼▼ INÍCIO LÂMINA 03 — ATLAS (game) / PROJETOS (executivo) ▼▼▼
+     #atlas-config = registro de continentes (empresas) e regiões (projetos).
+     • "slot" = território do mapa (1 a 11 no continente Apetit).
+     • "id"   = id da <section> do case. Se a seção não existir ou estiver
+                oculta, a região aparece coberta de névoa ("em cartografia").
+     • "secreto": true → nome escondido no mapa (região reservada).
+     NOVA EMPRESA = novo continente: peça a arte do mapa da expansão e
+     inclua um novo objeto em "continentes".
+     ═════════════════════════════════════════════════════════════════════════ -->
+<section class="lamina border-t b-line" id="atlas" data-lamina data-nav-exec="Projetos" data-nav-game="Atlas">
+<script type="application/json" id="atlas-config">
+{
+  "continentes": [
+    {
+      "id": "apetit",
+      "nome": "Continente Apetit",
+      "empresa": "Apetit Serviços de Alimentação · DelaFoods",
+      "periodo": "Engenharia, Controladoria e RH",
+      "regioes": [
+        { "slot": 1,  "id": "uniap",          "nome": "Cidadela do Saber",          "projeto": "UNIAP+",                       "cor": "#3EA6FF" },
+        { "slot": 2,  "id": "delaproject",    "nome": "Observatório da Governança", "projeto": "DelaProject & TCC",            "cor": "#8B7CFF" },
+        { "slot": 3,  "id": "esg-a-mesa",     "nome": "Planície Sustentável",       "projeto": "Modelo ESG à Mesa",            "cor": "#5BBF5B" },
+        { "slot": 4,  "id": "bem-estar-dela", "nome": "Vale do Cuidado",            "projeto": "Bem-Estar DELA",               "cor": "#F06A8E" },
+        { "slot": 5,  "id": "orcafacil",      "nome": "Forja da Automação",         "projeto": "Cartas de Reajuste / Orçafácil","cor": "#F0A23E" },
+        { "slot": 6,  "id": "manual-uen",     "nome": "Arquivo das Unidades",       "projeto": "Manual da UEN",                "cor": "#C9A97A" },
+        { "slot": 7,  "id": "conecta",        "nome": "Praça da Conexão",           "projeto": "Dela Conecta",                 "cor": "#3ED6C9" },
+        { "slot": 8,  "id": "reajustes",      "nome": "Porto dos Contratos",        "projeto": "Gestão de Reajustes",          "cor": "#7F9CC4" },
+        { "slot": 9,  "id": "ecocaneca",      "nome": "Bosque Reutilizável",        "projeto": "EcoCaneca",                    "cor": "#2FA36B" },
+        { "slot": 10, "id": "bi-fechamento",  "nome": "Mirante dos Dados",          "projeto": "BI de Fechamento",             "cor": "#E0D25A" },
+        { "slot": 11, "id": "regiao-11",      "nome": "Território desconhecido",    "projeto": "",                             "cor": "#B8BCD6", "secreto": true },
+        { "slot": 12, "id": "escala-6x1",     "nome": "Ilha das Escalas",           "projeto": "Adequação à escala 6x1",       "cor": "#E07A5F" }
+      ]
+    }
+  ],
+  "destaques": ["uniap", "bem-estar-dela", "esg-a-mesa", "delaproject"],
+  "ordemOutros": ["escala-6x1", "conecta", "orcafacil", "manual-uen", "bi-fechamento", "reajustes", "ecocaneca"],
+  "rotas": {
+    "recrutador":   ["uniap", "bem-estar-dela", "esg-a-mesa"],
+    "estrategista": "todas",
+    "explorador":   "todas"
+  }
+}
+</script>
+
+  <!-- ── VIEW EXECUTIVA: índice de projetos (gerado do HTML dos cases) ── -->
+  <div class="view-exec max-w-6xl mx-auto px-4 py-20">
+    <p class="eyebrow mb-4">Projetos em destaque</p>
+    <h2 class="font-display text-3xl md:text-4xl font-semibold mb-3">Quatro cases, do dado ao comportamento</h2>
+    <p class="t-muted mb-10 max-w-2xl">Cada case abre com o resultado. O detalhamento completo (situação, tarefa, ação e resultado) fica a um clique.</p>
+    <div id="exec-index" class="space-y-12"></div>
+  </div>
+
+  <!-- ── VIEW GAMIFICADA: mapa-múndi ─────────────────────────────────── -->
+  <div class="view-game max-w-6xl mx-auto px-4 py-16">
+    <p class="px text-xs t-accent mb-3">▸ ATLAS DA CARREIRA</p>
+    <div class="design-tag">🔍 <b>Narrativa + Progressão</b> · empresas são continentes, projetos são regiões; a névoa mostra o que ainda está por vir, e o seu personagem marca onde você parou.</div>
+    <p class="term text-2xl t-muted mb-8 max-w-3xl">Cada empresa é um continente; cada projeto, uma região. Clique numa região para abrir o case.</p>
+
+    <div class="grid lg:grid-cols-12 gap-6">
+      <div class="lg:col-span-8 self-start hud-panel glow p-2 md:p-3" style="background:#1d4fa8">
+        <p class="px text-[10px] mb-2 px-1" id="atlas-continente">CONTINENTE APETIT</p>
+        <svg id="atlas-svg" viewBox="0 0 1024 572" role="group" aria-label="Mapa do Continente Apetit com as regiões de projetos">
+  <defs><pattern id="fog" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="rgba(10,12,24,.62)"/><rect width="4" height="4" fill="rgba(10,12,24,.22)"/><rect x="4" y="4" width="4" height="4" fill="rgba(10,12,24,.22)"/></pattern></defs>
+  <!-- ARTE DO MAPA: troque o arquivo mantendo o nome para atualizar a imagem -->
+  <image href="assets/img/atlas-apetit.webp" x="0" y="0" width="1024" height="572"/>
+  <!-- ÁREAS CLICÁVEIS: um polígono por região, contornando as divisórias do mapa (coordenadas da imagem 1024×572) -->
+  <g class="reg" data-slot="1" data-cx="588" data-cy="152"><polygon class="reg-hit" points="640,32 626,30 563,31 545,36 529,50 521,75 516,80 507,83 508,150 513,163 509,187 520,196 531,198 540,193 547,194 563,210 575,217 577,222 582,222 607,206 651,187 660,180 663,160 663,125 669,105 671,78 648,38"/></g>
+  <g class="reg" data-slot="2" data-cx="744" data-cy="150"><polygon class="reg-hit" points="681,79 680,104 674,122 672,177 693,182 708,193 717,196 745,198 759,201 778,216 784,216 800,201 802,195 805,171 808,163 808,135 798,122 793,101 781,84 781,68 776,60 771,56 765,56 750,65 734,79"/></g>
+  <g class="reg" data-slot="3" data-cx="410" data-cy="470"><polygon class="reg-hit" points="358,352 343,375 333,382 332,407 322,422 322,431 329,443 329,457 323,483 316,499 321,515 332,520 353,537 357,543 466,541 475,525 485,520 499,517 504,501 505,454 501,443 484,431 475,422 471,407 469,384 461,376 450,371 428,370 406,363 382,363 364,352"/></g>
+  <g class="reg" data-slot="4" data-cx="562" data-cy="470"><polygon class="reg-hit" points="575,343 534,358 509,371 486,390 481,392 481,408 485,419 508,437 515,450 515,502 511,517 538,517 556,533 575,544 620,547 631,544 655,514 660,457 663,449 674,443 683,432 684,416 671,392 661,382 630,369 616,347 590,341"/></g>
+  <g class="reg" data-slot="5" data-cx="680" data-cy="314"><polygon class="reg-hit" points="665,188 647,201 636,204 630,211 613,214 587,230 572,243 570,255 577,263 586,286 584,329 620,339 628,346 635,360 671,376 679,386 693,392 703,383 709,382 727,370 732,364 749,356 778,346 775,309 778,298 787,290 793,273 795,250 794,244 764,216 756,211 713,207 704,217 692,217 683,206 683,190 680,188"/></g>
+  <g class="reg" data-slot="6" data-cx="207" data-cy="150"><polygon class="reg-hit" points="132,46 121,68 127,111 127,126 121,150 121,186 126,204 164,206 194,214 218,214 234,205 238,199 246,196 254,198 272,190 303,193 316,189 327,172 326,97 329,89 329,80 322,71 307,66 284,54 226,53 211,46 202,38 138,42"/></g>
+  <g class="reg" data-slot="7" data-cx="408" data-cy="128"><polygon class="reg-hit" points="340,75 335,107 339,132 337,177 356,196 392,216 398,216 410,211 456,205 487,189 498,181 502,174 502,162 496,143 496,83 484,54 416,53 400,48 376,48 353,71"/></g>
+  <g class="reg" data-slot="8" data-cx="732" data-cy="395"><polygon class="reg-hit" points="811,349 802,347 781,358 746,368 691,405 695,429 685,446 671,456 666,516 686,516 698,511 727,507 808,507 837,460 838,412 831,398 826,377"/></g>
+  <g class="reg" data-slot="9" data-cx="222" data-cy="447"><polygon class="reg-hit" points="257,335 242,334 224,347 201,356 162,360 153,364 132,360 122,374 115,392 117,480 126,492 138,498 158,515 174,533 226,538 266,538 273,531 301,515 319,460 319,442 311,432 311,423 322,405 322,384 305,374 281,349"/></g>
+  <g class="reg" data-slot="10" data-cx="208" data-cy="287"><polygon class="reg-hit" points="352,205 334,187 329,187 316,200 299,204 263,202 255,207 244,207 224,223 200,226 181,223 166,217 126,214 111,247 108,267 108,321 116,338 127,346 147,353 154,353 163,350 202,345 223,337 240,325 251,323 284,339 320,374 327,375 332,372 347,352 354,335 354,319 341,297 334,277 334,234 352,211"/></g>
+  <g class="reg" data-slot="11" data-cx="463" data-cy="318"><polygon class="reg-hit" points="571,226 556,216 545,204 526,208 517,206 508,196 495,195 448,218 413,220 399,225 392,225 370,213 363,213 345,232 344,242 345,277 351,295 364,316 364,339 381,352 402,352 425,359 456,363 466,368 478,381 483,381 496,369 520,354 549,344 559,337 574,333 575,285 568,267 559,256 559,247 571,231"/></g>
+  <g class="reg" data-slot="12" data-cx="886" data-cy="496"><polygon class="reg-hit" points="897,447 876,456 867,465 864,474 855,483 855,492 855,501 864,510 867,519 876,528 900,537 968,537 986,528 1001,519 1004,510 1010,501 1007,492 1007,483 1004,474 1001,465 989,456 983,447"/></g>
+  <g class="reg-isle"><title>Expansões futuras: as próximas empresas da jornada</title><rect x="830" y="150" width="190" height="270" fill="transparent"/></g>
+  <g id="atlas-pins"></g>
+  <!-- AVATAR NO MAPA: o personagem caminha até a região escolhida e fica na última visitada ("você está aqui") -->
+  <g id="atlas-avatar" style="pointer-events:none" aria-hidden="true">
+    <ellipse class="av-sombra" rx="20" ry="6" fill="rgba(0,0,0,.35)"/>
+    <svg class="av-quadro" width="72" height="78" viewBox="0 0 24 26" overflow="hidden">
+      <g class="av-vira"><image href="assets/sprites/marcus.png" width="720" height="26" style="image-rendering:pixelated" preserveAspectRatio="none"/></g>
+    </svg>
+  </g>
+</svg>
+        <p class="term text-lg mt-3" style="color:#D5DCF5">Ilhas entre as nuvens, a leste: <span style="color:var(--cyan)">expansões futuras</span>, as próximas empresas da jornada.</p>
+      </div>
+      <div class="lg:col-span-4">
+        <div class="hud-panel p-4">
+          <p class="px text-[10px] t-award mb-3">◆ REGIÕES</p>
+          <ul id="atlas-lista" class="term text-xl space-y-1"></ul>
+        </div>
+        <div class="hud-panel p-4 mt-4 term text-xl">
+          <p class="px text-[10px] mb-2" style="color:var(--cyan)">LEGENDA</p>
+          <div class="design-tag">🔍 <b>Facilitador (Fogg, B=MAT)</b> · a ★ da rota reduz o esforço de decidir por onde começar.</div>
+          <p><span class="inline-block w-3 h-3 align-middle" style="background:#39FF88"></span> região explorada</p>
+          <p><span class="t-award">★</span> rota sugerida para sua classe</p>
+          <p><img src="assets/ui/seta-baixo.gif" alt="" class="ic" style="margin-right:2px"> próxima região sugerida</p>
+          <p class="t-muted">névoa quadriculada = região em cartografia (case em produção)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ▲▲▲ FIM LÂMINA 03 — ATLAS / PROJETOS ▲▲▲ -->
 
 <!-- ═════════════════════════════════════════════════════════════════════════
      ▼▼▼ INÍCIO LÂMINA 02 — SOBRE MIM ▼▼▼
@@ -802,113 +920,6 @@
 </section>
 <!-- ▲▲▲ FIM LÂMINA 02 — SOBRE MIM ▲▲▲ -->
 
-<!-- ═════════════════════════════════════════════════════════════════════════
-     ▼▼▼ INÍCIO LÂMINA 03 — ATLAS (game) / PROJETOS (executivo) ▼▼▼
-     #atlas-config = registro de continentes (empresas) e regiões (projetos).
-     • "slot" = território do mapa (1 a 11 no continente Apetit).
-     • "id"   = id da <section> do case. Se a seção não existir ou estiver
-                oculta, a região aparece coberta de névoa ("em cartografia").
-     • "secreto": true → nome escondido no mapa (região reservada).
-     NOVA EMPRESA = novo continente: peça a arte do mapa da expansão e
-     inclua um novo objeto em "continentes".
-     ═════════════════════════════════════════════════════════════════════════ -->
-<section class="lamina border-t b-line" id="atlas" data-lamina data-nav-exec="Projetos" data-nav-game="Atlas">
-<script type="application/json" id="atlas-config">
-{
-  "continentes": [
-    {
-      "id": "apetit",
-      "nome": "Continente Apetit",
-      "empresa": "Apetit Serviços de Alimentação · DelaFoods",
-      "periodo": "Engenharia, Controladoria e RH",
-      "regioes": [
-        { "slot": 1,  "id": "uniap",          "nome": "Cidadela do Saber",          "projeto": "UNIAP+",                       "cor": "#3EA6FF" },
-        { "slot": 2,  "id": "delaproject",    "nome": "Observatório da Governança", "projeto": "DelaProject & TCC",            "cor": "#8B7CFF" },
-        { "slot": 3,  "id": "esg-a-mesa",     "nome": "Planície Sustentável",       "projeto": "Modelo ESG à Mesa",            "cor": "#5BBF5B" },
-        { "slot": 4,  "id": "bem-estar-dela", "nome": "Vale do Cuidado",            "projeto": "Bem-Estar DELA",               "cor": "#F06A8E" },
-        { "slot": 5,  "id": "orcafacil",      "nome": "Forja da Automação",         "projeto": "Cartas de Reajuste / Orçafácil","cor": "#F0A23E" },
-        { "slot": 6,  "id": "manual-uen",     "nome": "Arquivo das Unidades",       "projeto": "Manual da UEN",                "cor": "#C9A97A" },
-        { "slot": 7,  "id": "conecta",        "nome": "Praça da Conexão",           "projeto": "Dela Conecta",                 "cor": "#3ED6C9" },
-        { "slot": 8,  "id": "reajustes",      "nome": "Porto dos Contratos",        "projeto": "Gestão de Reajustes",          "cor": "#7F9CC4" },
-        { "slot": 9,  "id": "ecocaneca",      "nome": "Bosque Reutilizável",        "projeto": "EcoCaneca",                    "cor": "#2FA36B" },
-        { "slot": 10, "id": "bi-fechamento",  "nome": "Mirante dos Dados",          "projeto": "BI de Fechamento",             "cor": "#E0D25A" },
-        { "slot": 11, "id": "regiao-11",      "nome": "Território desconhecido",    "projeto": "",                             "cor": "#B8BCD6", "secreto": true }
-      ]
-    }
-  ],
-  "destaques": ["uniap", "bem-estar-dela", "delaproject", "orcafacil"],
-  "rotas": {
-    "recrutador":   ["uniap", "bem-estar-dela", "esg-a-mesa"],
-    "estrategista": "todas",
-    "explorador":   "todas"
-  }
-}
-</script>
-
-  <!-- ── VIEW EXECUTIVA: índice de projetos (gerado do HTML dos cases) ── -->
-  <div class="view-exec max-w-6xl mx-auto px-4 py-20">
-    <p class="eyebrow mb-4">Projetos em destaque</p>
-    <h2 class="font-display text-3xl md:text-4xl font-semibold mb-3">Quatro cases, do dado ao comportamento</h2>
-    <p class="t-muted mb-10 max-w-2xl">Cada case abre com o resultado. O detalhamento completo (situação, tarefa, ação e resultado) fica a um clique.</p>
-    <div id="exec-index" class="space-y-12"></div>
-  </div>
-
-  <!-- ── VIEW GAMIFICADA: mapa-múndi ─────────────────────────────────── -->
-  <div class="view-game max-w-6xl mx-auto px-4 py-16">
-    <p class="px text-xs t-accent mb-3">▸ ATLAS DA CARREIRA</p>
-    <div class="design-tag">🔍 <b>Narrativa + Progressão</b> · empresas são continentes, projetos são regiões; a névoa mostra o que ainda está por vir, e o seu personagem marca onde você parou.</div>
-    <p class="term text-2xl t-muted mb-8 max-w-3xl">Cada empresa é um continente; cada projeto, uma região. Clique numa região para abrir o case.</p>
-
-    <div class="grid lg:grid-cols-12 gap-6">
-      <div class="lg:col-span-8 self-start hud-panel glow p-2 md:p-3" style="background:#1d4fa8">
-        <p class="px text-[10px] mb-2 px-1" id="atlas-continente">CONTINENTE APETIT</p>
-        <svg id="atlas-svg" viewBox="0 0 1024 572" role="group" aria-label="Mapa do Continente Apetit com as regiões de projetos">
-  <defs><pattern id="fog" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="rgba(10,12,24,.62)"/><rect width="4" height="4" fill="rgba(10,12,24,.22)"/><rect x="4" y="4" width="4" height="4" fill="rgba(10,12,24,.22)"/></pattern></defs>
-  <!-- ARTE DO MAPA: troque o arquivo mantendo o nome para atualizar a imagem -->
-  <image href="assets/img/atlas-apetit.webp" x="0" y="0" width="1024" height="572"/>
-  <!-- ÁREAS CLICÁVEIS: um polígono por região, contornando as divisórias do mapa (coordenadas da imagem 1024×572) -->
-  <g class="reg" data-slot="1" data-cx="588" data-cy="152"><polygon class="reg-hit" points="640,32 626,30 563,31 545,36 529,50 521,75 516,80 507,83 508,150 513,163 509,187 520,196 531,198 540,193 547,194 563,210 575,217 577,222 582,222 607,206 651,187 660,180 663,160 663,125 669,105 671,78 648,38"/></g>
-  <g class="reg" data-slot="2" data-cx="744" data-cy="150"><polygon class="reg-hit" points="681,79 680,104 674,122 672,177 693,182 708,193 717,196 745,198 759,201 778,216 784,216 800,201 802,195 805,171 808,163 808,135 798,122 793,101 781,84 781,68 776,60 771,56 765,56 750,65 734,79"/></g>
-  <g class="reg" data-slot="3" data-cx="410" data-cy="470"><polygon class="reg-hit" points="358,352 343,375 333,382 332,407 322,422 322,431 329,443 329,457 323,483 316,499 321,515 332,520 353,537 357,543 466,541 475,525 485,520 499,517 504,501 505,454 501,443 484,431 475,422 471,407 469,384 461,376 450,371 428,370 406,363 382,363 364,352"/></g>
-  <g class="reg" data-slot="4" data-cx="562" data-cy="470"><polygon class="reg-hit" points="575,343 534,358 509,371 486,390 481,392 481,408 485,419 508,437 515,450 515,502 511,517 538,517 556,533 575,544 620,547 631,544 655,514 660,457 663,449 674,443 683,432 684,416 671,392 661,382 630,369 616,347 590,341"/></g>
-  <g class="reg" data-slot="5" data-cx="680" data-cy="314"><polygon class="reg-hit" points="665,188 647,201 636,204 630,211 613,214 587,230 572,243 570,255 577,263 586,286 584,329 620,339 628,346 635,360 671,376 679,386 693,392 703,383 709,382 727,370 732,364 749,356 778,346 775,309 778,298 787,290 793,273 795,250 794,244 764,216 756,211 713,207 704,217 692,217 683,206 683,190 680,188"/></g>
-  <g class="reg" data-slot="6" data-cx="207" data-cy="150"><polygon class="reg-hit" points="132,46 121,68 127,111 127,126 121,150 121,186 126,204 164,206 194,214 218,214 234,205 238,199 246,196 254,198 272,190 303,193 316,189 327,172 326,97 329,89 329,80 322,71 307,66 284,54 226,53 211,46 202,38 138,42"/></g>
-  <g class="reg" data-slot="7" data-cx="408" data-cy="128"><polygon class="reg-hit" points="340,75 335,107 339,132 337,177 356,196 392,216 398,216 410,211 456,205 487,189 498,181 502,174 502,162 496,143 496,83 484,54 416,53 400,48 376,48 353,71"/></g>
-  <g class="reg" data-slot="8" data-cx="732" data-cy="395"><polygon class="reg-hit" points="811,349 802,347 781,358 746,368 691,405 695,429 685,446 671,456 666,516 686,516 698,511 727,507 808,507 837,460 838,412 831,398 826,377"/></g>
-  <g class="reg" data-slot="9" data-cx="222" data-cy="447"><polygon class="reg-hit" points="257,335 242,334 224,347 201,356 162,360 153,364 132,360 122,374 115,392 117,480 126,492 138,498 158,515 174,533 226,538 266,538 273,531 301,515 319,460 319,442 311,432 311,423 322,405 322,384 305,374 281,349"/></g>
-  <g class="reg" data-slot="10" data-cx="208" data-cy="287"><polygon class="reg-hit" points="352,205 334,187 329,187 316,200 299,204 263,202 255,207 244,207 224,223 200,226 181,223 166,217 126,214 111,247 108,267 108,321 116,338 127,346 147,353 154,353 163,350 202,345 223,337 240,325 251,323 284,339 320,374 327,375 332,372 347,352 354,335 354,319 341,297 334,277 334,234 352,211"/></g>
-  <g class="reg" data-slot="11" data-cx="463" data-cy="318"><polygon class="reg-hit" points="571,226 556,216 545,204 526,208 517,206 508,196 495,195 448,218 413,220 399,225 392,225 370,213 363,213 345,232 344,242 345,277 351,295 364,316 364,339 381,352 402,352 425,359 456,363 466,368 478,381 483,381 496,369 520,354 549,344 559,337 574,333 575,285 568,267 559,256 559,247 571,231"/></g>
-  <g class="reg-isle"><title>Expansões futuras: as próximas empresas da jornada</title><rect x="830" y="150" width="190" height="270" fill="transparent"/></g>
-  <g id="atlas-pins"></g>
-  <!-- AVATAR NO MAPA: o personagem caminha até a região escolhida e fica na última visitada ("você está aqui") -->
-  <g id="atlas-avatar" style="pointer-events:none" aria-hidden="true">
-    <ellipse class="av-sombra" rx="20" ry="6" fill="rgba(0,0,0,.35)"/>
-    <svg class="av-quadro" width="72" height="78" viewBox="0 0 24 26" overflow="hidden">
-      <g class="av-vira"><image href="assets/sprites/marcus.png" width="720" height="26" style="image-rendering:pixelated" preserveAspectRatio="none"/></g>
-    </svg>
-  </g>
-</svg>
-        <p class="term text-lg mt-3" style="color:#D5DCF5">Ilhas entre as nuvens, a leste: <span style="color:var(--cyan)">expansões futuras</span>, as próximas empresas da jornada.</p>
-      </div>
-      <div class="lg:col-span-4">
-        <div class="hud-panel p-4">
-          <p class="px text-[10px] t-award mb-3">◆ REGIÕES</p>
-          <ul id="atlas-lista" class="term text-xl space-y-1"></ul>
-        </div>
-        <div class="hud-panel p-4 mt-4 term text-xl">
-          <p class="px text-[10px] mb-2" style="color:var(--cyan)">LEGENDA</p>
-          <div class="design-tag">🔍 <b>Facilitador (Fogg, B=MAT)</b> · a ★ da rota reduz o esforço de decidir por onde começar.</div>
-          <p><span class="inline-block w-3 h-3 align-middle" style="background:#39FF88"></span> região explorada</p>
-          <p><span class="t-award">★</span> rota sugerida para sua classe</p>
-          <p><img src="assets/ui/seta-baixo.gif" alt="" class="ic" style="margin-right:2px"> próxima região sugerida</p>
-          <p class="t-muted">névoa quadriculada = região em cartografia (case em produção)</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- ▲▲▲ FIM LÂMINA 03 — ATLAS / PROJETOS ▲▲▲ -->
-
 
 
 <!-- ═════════════════════════════════════════════════════════════════════════
@@ -933,8 +944,8 @@
           <img src="assets/ui/sala-trofeus.png" alt="Sala de museu em pixel art com cinco quadros de prêmios" class="sala-fundo" width="560" height="240" />
           <a class="quadro" href="#uniap" style="left:6.071%;top:22.500%;width:10.714%;height:23.750%" title="Campeãs da Inovação 2026 · UNIAP+"><img src="assets/badges/campeas-inovacao-2026.png" alt="Campeãs da Inovação 2026" /></a>
           <span class="placa" style="left:4.643%;top:52.917%;width:13.571%">Campeãs da Inovação<br>2026</span>
-          <a class="quadro" href="#bem-estar-dela" style="left:25.357%;top:22.500%;width:10.714%;height:23.750%" title="Woman’s Legacy 2026 · Bem-Estar DELA"><img src="assets/badges/womens-legacy-2026.png" alt="Woman’s Legacy 2026" /></a>
-          <span class="placa" style="left:23.929%;top:52.917%;width:13.571%">Woman’s Legacy<br>2026</span>
+          <a class="quadro" href="#bem-estar-dela" style="left:25.357%;top:22.500%;width:10.714%;height:23.750%" title="Women’s Legacy 2026 · Bem-Estar DELA"><img src="assets/badges/womens-legacy-2026.png" alt="Women’s Legacy 2026" /></a>
+          <span class="placa" style="left:23.929%;top:52.917%;width:13.571%">Women’s Legacy<br>2026</span>
           <a class="quadro" href="#bem-estar-dela" style="left:44.643%;top:22.500%;width:10.714%;height:23.750%" title="Mastercana Social 2026 · Bem-Estar DELA"><img src="assets/badges/mastercana-2026.png" alt="Mastercana Social 2026" /></a>
           <span class="placa" style="left:43.214%;top:52.917%;width:13.571%">Mastercana Social<br>2026</span>
           <a class="quadro" href="#esg-a-mesa" style="left:63.929%;top:22.500%;width:10.714%;height:23.750%" title="ECO Amcham 2025 · Case UBC · ESG à Mesa"><img src="assets/badges/eco-amcham.png" alt="ECO Amcham 2025" /></a>
@@ -946,7 +957,7 @@
       <!-- no celular as placas somem (texto pequeno demais): a mesma informação vira lista -->
       <ul class="sala-lista term text-xl mt-4 space-y-2 sm:hidden">
         <li><a href="#uniap" class="hover:underline"><span class="t-award">★</span> Campeãs da Inovação 2026 <span class="t-muted">· UNIAP+</span></a></li>
-        <li><a href="#bem-estar-dela" class="hover:underline"><span class="t-award">★</span> Woman’s Legacy 2026 <span class="t-muted">· Bem-Estar DELA</span></a></li>
+        <li><a href="#bem-estar-dela" class="hover:underline"><span class="t-award">★</span> Women’s Legacy 2026 <span class="t-muted">· Bem-Estar DELA</span></a></li>
         <li><a href="#bem-estar-dela" class="hover:underline"><span class="t-award">★</span> Mastercana Social 2026 <span class="t-muted">· Bem-Estar DELA</span></a></li>
         <li><a href="#esg-a-mesa" class="hover:underline"><span class="t-award">★</span> ECO Amcham 2025 <span class="t-muted">· ESG à Mesa</span></a></li>
         <li><a href="#esg-a-mesa" class="hover:underline"><span class="t-award">★</span> R3 Ecolab 2025 <span class="t-muted">· ESG à Mesa</span></a></li>
@@ -957,7 +968,7 @@
       <a class="badge" href="https://www.amanha.com.br" target="_blank" rel="noopener"><div class="seal" data-logo="assets/badges/campeas-inovacao-2026.png"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M7 3h10v3a5 5 0 0 1-10 0V3Zm-4 1h3v2a3 3 0 0 1-3-2Zm15 0h3a3 3 0 0 1-3 2V4ZM11 13h2v4h3v3H8v-3h3v-4Z"/></svg></div>
         <div><p class="b-title">Campeãs da Inovação 2026</p><p class="b-sub">Case UNIAP+</p></div></a>
       <a class="badge" href="https://www.fbm.org.br/premio-marketing-strategy-womens-legacy" target="_blank" rel="noopener"><div class="seal" data-logo="assets/badges/womens-legacy-2026.png"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.4-9.3-9C1.2 8.9 3.2 5 6.8 5c2 0 3.4 1.1 5.2 3 1.8-1.9 3.2-3 5.2-3 3.6 0 5.6 3.9 4.1 7-2.3 4.6-9.3 9-9.3 9Z"/></svg></div>
-        <div><p class="b-title">Woman’s Legacy 2026</p><p class="b-sub">Case Bem-Estar DELA</p></div></a>
+        <div><p class="b-title">Women’s Legacy 2026</p><p class="b-sub">Case Bem-Estar DELA</p></div></a>
       <a class="badge" href="https://mastercana.com.br/" target="_blank" rel="noopener"><div class="seal" data-logo="assets/badges/mastercana-2026.png"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.4-9.3-9C1.2 8.9 3.2 5 6.8 5c2 0 3.4 1.1 5.2 3 1.8-1.9 3.2-3 5.2-3 3.6 0 5.6 3.9 4.1 7-2.3 4.6-9.3 9-9.3 9Z"/></svg></div>
         <div><p class="b-title">Mastercana Social 2026</p><p class="b-sub">Case Bem-Estar DELA</p></div></a>
       <div class="badge"><div class="seal" data-logo="assets/badges/eco-amcham.png"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M5 19c0-8 5-14 15-15-1 10-7 15-15 15Zm0 0 7-7"/></svg></div>
@@ -1330,13 +1341,21 @@
       </div>
     </div>
 
-    <!-- reconhecimentos -->
-    <div class="mt-8 flex flex-wrap gap-3">
-      <div class="badge" style="border-color:var(--award)"><div class="seal" data-logo="assets/badges/r3-ecolab.png"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2s6 7 6 12a6 6 0 0 1-12 0c0-5 6-12 6-12Z"/></svg></div>
-        <div><p class="b-title">Prêmio R3 Ecolab 2025</p><p class="b-sub">Práticas da Apetit · impacto de 2024</p></div></div>
-      <div class="badge" style="border-color:var(--award)"><div class="seal" data-logo="assets/badges/eco-amcham.png"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M5 19c0-8 5-14 15-15-1 10-7 15-15 15Zm0 0 7-7"/></svg></div>
-        <div><p class="b-title">Prêmio ECO Amcham 2025</p><p class="b-sub">Case UBC · categoria Processos</p></div></div>
-
+    <!-- reconhecimentos + fotos dos troféus (assets/projetos/esg-premio-*.webp) -->
+    <div class="mt-8 grid md:grid-cols-12 gap-8 items-center">
+      <div class="md:col-span-6">
+        <div class="flex flex-wrap gap-3">
+        <div class="badge" style="border-color:var(--award)"><div class="seal" data-logo="assets/badges/r3-ecolab.png"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2s6 7 6 12a6 6 0 0 1-12 0c0-5 6-12 6-12Z"/></svg></div>
+          <div><p class="b-title">Prêmio R3 Ecolab 2025</p><p class="b-sub">Práticas da Apetit · impacto de 2024</p></div></div>
+        <div class="badge" style="border-color:var(--award)"><div class="seal" data-logo="assets/badges/eco-amcham.png"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M5 19c0-8 5-14 15-15-1 10-7 15-15 15Zm0 0 7-7"/></svg></div>
+          <div><p class="b-title">Prêmio ECO Amcham 2025</p><p class="b-sub">Case UBC · categoria Processos</p></div></div>
+        </div>
+        <p class="mt-5 text-sm t-muted max-w-2xl">Os dois cases que estruturei no diagnóstico do ESG à Mesa foram premiados. O troféu R3 foi concedido pela Ecolab à Apetit, e o do ECO Amcham eu recebi na cerimônia de premiação.</p>
+      </div>
+      <div class="md:col-span-6 grid grid-cols-2 gap-4">
+        <figure><img data-foto src="assets/projetos/esg-premio-r3.webp" alt="Troféu R3 Institucional concedido pela Ecolab à Apetit pelo projeto de Sustentabilidade e Economia" width="600" height="800" loading="lazy" class="w-full h-auto rounded-2xl border b-line" /><figcaption class="text-xs t-muted mt-2 text-center">Troféu R3 Institucional · Ecolab</figcaption></figure>
+        <figure><img data-foto src="assets/projetos/esg-premio-amcham.webp" alt="Marcus segurando o troféu do Prêmio ECO Amcham na cerimônia de premiação" width="600" height="800" loading="lazy" class="w-full h-auto rounded-2xl border b-line" /><figcaption class="text-xs t-muted mt-2 text-center">Cerimônia do ECO Amcham</figcaption></figure>
+      </div>
     </div>
 
     <!-- KPIs: resultados das práticas da Apetit reconhecidas nos cases (não do modelo, que ainda vai a piloto) -->
@@ -1543,13 +1562,13 @@
 <!-- ═════════════════════════════════════════════════════════════════════════
      ▼▼▼ INÍCIO LÂMINA P04 — BEM-ESTAR DELA ▼▼▼
      Projeto 4 · Saúde e acolhimento das colaboradoras · ESG (Social)
-     Prêmios: Woman’s Legacy 2026 · Mastercana Social 2026
+     Prêmios: Women’s Legacy 2026 · Mastercana Social 2026
      Logos do programa (funcionam em fundo branco):
        assets/projetos/bem-estar-dela.png · assets/projetos/bem-estar-ela-gestante.png
      Identidade: fundo rosa quase branco + vinho do logotipo (variáveis --t-*)
      ═════════════════════════════════════════════════════════════════════════ -->
 <section class="lamina border-t b-line" id="bem-estar-dela" data-moldura="vale" data-lamina data-caso data-tema data-empresa="apetit"
-  data-card-titulo="Bem-Estar DELA" data-card-resumo="Programa de saúde e acolhimento das colaboradoras: dignidade menstrual, gestação e maternidade." data-card-destaque="Woman’s Legacy e Mastercana Social 2026"
+  data-card-titulo="Bem-Estar DELA" data-card-resumo="Programa de saúde e acolhimento das colaboradoras: dignidade menstrual, gestação e maternidade." data-card-destaque="Women’s Legacy e Mastercana Social 2026"
   data-competencias="Design comportamental,ESG,Parcerias,Comunicação interna"
   style="--t-bg:#FBF1F4;--t-accent:#A3142F;--t-line:#EFD2DA;--t-panel2:#F6E3E9;--t-region:#F06A8E">
 
@@ -1571,12 +1590,21 @@
       </div>
     </div>
 
-    <!-- prêmios -->
-    <div class="mt-8 flex flex-wrap gap-3">
-      <a class="badge" href="https://www.fbm.org.br/premio-marketing-strategy-womens-legacy" target="_blank" rel="noopener" style="border-color:var(--award)"><div class="seal" data-logo="assets/badges/womens-legacy-2026.png"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.4-9.3-9C1.2 8.9 3.2 5 6.8 5c2 0 3.4 1.1 5.2 3 1.8-1.9 3.2-3 5.2-3 3.6 0 5.6 3.9 4.1 7-2.3 4.6-9.3 9-9.3 9Z"/></svg></div>
-        <div><p class="b-title">Prêmio Woman’s Legacy 2026</p><p class="b-sub">Projeto vencedor</p></div></a>
-      <a class="badge" href="https://mastercana.com.br/" target="_blank" rel="noopener" style="border-color:var(--award)"><div class="seal" data-logo="assets/badges/mastercana-2026.png"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.4-9.3-9C1.2 8.9 3.2 5 6.8 5c2 0 3.4 1.1 5.2 3 1.8-1.9 3.2-3 5.2-3 3.6 0 5.6 3.9 4.1 7-2.3 4.6-9.3 9-9.3 9Z"/></svg></div>
-        <div><p class="b-title">Prêmio Mastercana Social 2026</p><p class="b-sub">Projeto vencedor</p></div></a>
+    <!-- prêmios + foto da entrega (assets/projetos/bem-estar-dela-premio.webp) -->
+    <div class="mt-8 grid md:grid-cols-12 gap-8 items-center">
+      <div class="md:col-span-7">
+        <div class="flex flex-wrap gap-3">
+        <a class="badge" href="https://www.fbm.org.br/premio-marketing-strategy-womens-legacy" target="_blank" rel="noopener" style="border-color:var(--award)"><div class="seal" data-logo="assets/badges/womens-legacy-2026.png"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.4-9.3-9C1.2 8.9 3.2 5 6.8 5c2 0 3.4 1.1 5.2 3 1.8-1.9 3.2-3 5.2-3 3.6 0 5.6 3.9 4.1 7-2.3 4.6-9.3 9-9.3 9Z"/></svg></div>
+          <div><p class="b-title">Prêmio Women’s Legacy 2026</p><p class="b-sub">Projeto vencedor</p></div></a>
+        <a class="badge" href="https://mastercana.com.br/" target="_blank" rel="noopener" style="border-color:var(--award)"><div class="seal" data-logo="assets/badges/mastercana-2026.png"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.4-9.3-9C1.2 8.9 3.2 5 6.8 5c2 0 3.4 1.1 5.2 3 1.8-1.9 3.2-3 5.2-3 3.6 0 5.6 3.9 4.1 7-2.3 4.6-9.3 9-9.3 9Z"/></svg></div>
+          <div><p class="b-title">Prêmio Mastercana Social 2026</p><p class="b-sub">Projeto vencedor</p></div></a>
+        </div>
+        <p class="mt-5 text-sm t-muted max-w-2xl">Além do prêmio ao projeto, recebi da Fundação Brasileira de Marketing um certificado de reconhecimento pela minha contribuição na elaboração do case.</p>
+      </div>
+      <figure class="md:col-span-5">
+        <img data-foto src="assets/projetos/bem-estar-dela-premio.webp" alt="Marcus segurando o certificado de reconhecimento e o troféu do Prêmio Marketing Strategy Women’s Legacy 2026" width="600" height="750" loading="lazy" class="w-full h-auto rounded-2xl border b-line" />
+        <figcaption class="text-xs t-muted mt-3 text-center">Certificado e troféu do Women’s Legacy 2026</figcaption>
+      </figure>
     </div>
 
     <!-- KPIs -->
@@ -1632,7 +1660,7 @@
 
       <div class="flex gap-5 md:col-span-2"><span class="star-key">R</span><div class="w-full">
         <p class="font-semibold mb-2">Resultado</p>
-        <p class="text-sm t-muted max-w-3xl">Lançado em 2026, o programa <strong class="t-ink">quebrou a tendência sazonal</strong>: no primeiro quadrimestre após o lançamento, a adesão de gestantes superou a dos mesmos períodos dos anos anteriores. O resultado mostra a atratividade do programa e a confiança gerada pela nova política de acolhimento, e rendeu os prêmios <strong class="t-ink">Woman’s Legacy 2026</strong> e <strong class="t-ink">Mastercana Social 2026</strong>.</p>
+        <p class="text-sm t-muted max-w-3xl">Lançado em 2026, o programa <strong class="t-ink">quebrou a tendência sazonal</strong>: no primeiro quadrimestre após o lançamento, a adesão de gestantes superou a dos mesmos períodos dos anos anteriores. O resultado mostra a atratividade do programa e a confiança gerada pela nova política de acolhimento, e rendeu os prêmios <strong class="t-ink">Women’s Legacy 2026</strong> e <strong class="t-ink">Mastercana Social 2026</strong>.</p>
       </div></div>
     </div>
   </div>
@@ -2454,6 +2482,86 @@
      ▲▲▲ FIM DO SLOT ▲▲▲
      ═════════════════════════════════════════════════════════════════════════ -->
 
+<!-- ═════════════════════════════════════════════════════════════════════════
+     ▼▼▼ INÍCIO LÂMINA P12 — ADEQUAÇÃO AO FIM DA ESCALA 6X1 (ILHA DAS ESCALAS) ▼▼▼
+     Projeto regulatório (EC 141/2026) · em andamento · formato compacto.
+     Versão pública: resultados qualitativos, sem volumes, clientes ou valores.
+     Cena: assets/cenas/escala-6x1.png (384×160), composta a partir da cena do DelaProject (pack Modern Interiors/LimeZu).
+     ═════════════════════════════════════════════════════════════════════════ -->
+<section class="lamina border-t b-line" id="escala-6x1" data-lamina data-caso data-tema data-empresa="apetit"
+  data-card-titulo="Adequação ao fim da escala 6x1" data-card-resumo="Governança de um projeto regulatório: fluxo de validação, base única e simulador de impacto para adequar escalas e contratos à EC 141/2026." data-card-destaque="Decisões validadas antes de chegar ao cliente"
+  data-competencias="Governança,Gestão de projetos,Engenharia de processos,Business case & ROI"
+  style="--t-bg:#F8F1EC;--t-accent:#A24E2A;--t-line:#EBD9CC;--t-panel2:#F2E4DA;--t-region:#E07A5F">
+
+  <!-- ── VIEW EXECUTIVA (STAR compacto) ─────────────────────────────── -->
+  <div class="view-exec max-w-6xl mx-auto px-4 py-14">
+    <div class="grid md:grid-cols-12 gap-8">
+      <div class="md:col-span-4">
+        <p class="eyebrow mb-3">Case 12 · Governança e conformidade</p>
+        <h2 class="font-display text-2xl md:text-3xl font-semibold leading-tight">Adequação ao fim da escala 6x1</h2>
+        <p class="mt-3 text-sm"><span class="t-muted">Meu papel:</span> condução do projeto pelo Departamento Pessoal.</p>
+        <p class="mt-1 text-sm"><span class="t-muted">Status:</span> em andamento, com a primeira fase legal em dezembro de 2026.</p>
+      </div>
+      <div class="md:col-span-8 grid sm:grid-cols-2 gap-x-8 gap-y-6 text-sm">
+        <div><p class="font-semibold"><span class="t-accent font-display text-xl mr-1">S</span> Situação</p><p class="t-muted mt-1">A Emenda Constitucional 141/2026 encerra a escala 6x1 em fases. Numa operação de alimentação espalhada por muitas unidades, isso muda escalas, quadro de pessoal e contratos com clientes em pouco tempo.</p></div>
+        <div><p class="font-semibold"><span class="t-accent font-display text-xl mr-1">T</span> Tarefa</p><p class="t-muted mt-1">Adequar as escalas às novas regras e preparar o repasse do impacto aos clientes, com cada decisão validada e o prazo legal garantido.</p></div>
+        <div><p class="font-semibold"><span class="t-accent font-display text-xl mr-1">A</span> Ação</p><ul class="t-muted mt-1 space-y-1 list-disc pl-4">
+          <li>Fluxo de governança em etapas: validação com a diretoria, conferência do Jurídico e só então comunicação ao cliente.</li>
+          <li>Base oficial única para as simulações, com critério claro para analisar propostas externas sem substituí-la.</li>
+          <li>Formulário padronizado de coleta com os clientes e simulador financeiro de impacto e repasse.</li>
+          <li>Execução por fases: primeiro escalas e quadro pelas novas regras, depois impacto financeiro.</li>
+        </ul></div>
+        <div><p class="font-semibold"><span class="t-accent font-display text-xl mr-1">R</span> Resultado parcial</p><ul class="t-muted mt-1 space-y-1 list-disc pl-4">
+          <li><strong class="t-ink">Decisões rastreáveis:</strong> cada número passa pela diretoria e pelo Jurídico antes de chegar ao cliente.</li>
+          <li><strong class="t-ink">Uma base e um simulador</strong> para todas as unidades, em vez de cálculos paralelos.</li>
+          <li>Negociação com clientes apoiada em <strong class="t-ink">critérios explícitos</strong>, não em casos isolados.</li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── VIEW GAMIFICADA (região menor) ─────────────────────────────── -->
+  <div class="view-game max-w-6xl mx-auto px-4 py-12">
+    <p class="px text-[10px] region-tag">REGIÃO 12 · ILHA DAS ESCALAS · REGIÃO MENOR</p>
+    <h2 class="px text-base md:text-xl mt-3 leading-relaxed region-title">ESCALA 6X1 — A ILHA DAS ESCALAS</h2>
+    <a href="#atlas" class="term text-lg t-muted hover:underline">◀ voltar ao Atlas</a>
+    <!-- cena da região (pixel art: pack Modern Interiors/LimeZu · assets/cenas/escala-6x1.png) -->
+    <div class="cena-regiao"><img src="assets/cenas/escala-6x1.png" alt="Sala de reunião em pixel art com dois quadros de escalas na parede, mesa de reunião e o personagem de Marcus" width="384" height="160" /></div>
+    <div class="grid md:grid-cols-3 gap-4 mt-6">
+      <div class="hud-panel problema p-5">
+        <p class="px text-[10px]" style="color:var(--magenta)">⚠ O DESAFIO <span class="trad">· problema de negócio</span></p>
+        <p class="px text-[11px] mt-4 leading-relaxed">O RITMO VAI MUDAR</p>
+        <p class="term text-xl t-muted mt-3">Uma lei nova muda o ritmo de todas as escalas, e o prazo não espera ninguém.</p>
+      </div>
+      <div class="hud-panel p-5 md:col-span-2">
+        <p class="px text-[10px] t-accent">☺ SEU PAPEL NA PARTY <span class="trad">· meu papel</span></p>
+        <p class="term text-2xl mt-3">Guardião das escalas · condutor do conselho</p>
+        <p class="px text-[10px] t-award mt-5 mb-3">▣ MISSÕES <span class="trad">· entregas (em andamento)</span></p>
+        <div class="grid sm:grid-cols-2 gap-3 term text-xl">
+      <div class="hud-panel p-4"><span class="t-accent">✔</span> <span class="t-accent">M1</span> Traduzir a lei em regras de escala</div>
+      <div class="hud-panel p-4"><span class="t-accent">✔</span> <span class="t-accent">M2</span> Montar o conselho: diretoria, Jurídico, cliente</div>
+      <div class="hud-panel p-4"><span class="t-accent">✔</span> <span class="t-accent">M3</span> Forjar o simulador de impacto</div>
+      <div class="hud-panel p-4"><span class="t-muted">…</span> <span class="t-accent">M4</span> Virar as escalas da Fase 1</div>
+        </div>
+      </div>
+    </div>
+    <div class="design-tag mt-8">🔍 <b>Caminho para a maestria</b> · aprofundamento opcional para quem quer entender o porquê.</div>
+    <details class="lente hud-panel mt-2" data-lente>
+      <summary class="p-5 cursor-pointer flex flex-wrap items-center justify-between gap-3">
+        <span class="px text-[10px]" style="color:var(--cyan)">🔍 LENTE DO DESIGNER</span>
+        <span class="term text-xl t-muted">o porquê das escolhas <span class="seta"></span></span>
+      </summary>
+      <div class="px-5 pb-6 grid md:grid-cols-3 gap-4 term text-xl leading-snug">
+        <div class="lente-card"><p class="lente-k">PORTÕES DE DECISÃO</p><p>Diretoria e Jurídico antes do cliente: o retrabalho custa menos dentro de casa do que numa negociação aberta.</p></div>
+        <div class="lente-card"><p class="lente-k">UMA SÓ FONTE DA VERDADE</p><p>Uma base oficial evita que cada conversa comece discutindo de quem é o número certo.</p></div>
+        <div class="lente-card"><p class="lente-k">FASES ANTES DE VALORES</p><p>Primeiro as regras e as escalas, depois o impacto financeiro: cada etapa se apoia na anterior já validada.</p></div>
+      </div>
+    </details>
+  </div>
+</section>
+<!-- ▲▲▲ FIM LÂMINA P12 — ADEQUAÇÃO AO FIM DA ESCALA 6X1 ▲▲▲ -->
+
+
 
 <!-- ═════════════════════════════════════════════════════════════════════════
      ▼▼▼ INÍCIO LÂMINA 98 — OUTROS PROJETOS (só Modo Executivo) ▼▼▼
@@ -2464,8 +2572,8 @@
 <section class="lamina so-exec border-t b-line" id="outros-projetos" data-nav-exec="Outros projetos">
   <div class="max-w-6xl mx-auto px-4 py-20">
     <p class="eyebrow mb-4">Outros projetos</p>
-    <h2 class="font-display text-3xl md:text-4xl font-semibold mb-3">Mais seis projetos na mesma empresa</h2>
-    <p class="t-muted mb-8 max-w-2xl">Governança, comunicação interna, automação, ESG e dados. Abra qualquer um para ver o case completo.</p>
+    <h2 class="font-display text-3xl md:text-4xl font-semibold mb-3">Mais sete projetos na mesma empresa</h2>
+    <p class="t-muted mb-8 max-w-2xl">Governança, conformidade, comunicação interna, automação, ESG e dados. O resumo, os prêmios e as fotos já estão aqui; o case completo (situação, tarefa, ação e resultado) abre com um clique.</p>
     <div id="outros-lista" class="border-t b-line"></div>
   </div>
 </section>
@@ -2488,8 +2596,8 @@
       <a href="https://www.linkedin.com/in/marcusvmartin/" target="_blank" rel="noopener" class="btn-accent rounded-full px-6 py-3 font-medium inline-flex items-center gap-2"><img src="assets/ui/linkedin.png" alt="" width="18" height="18" class="li-logo">LinkedIn ↗</a>
       <a href="https://www.linkedin.com/newsletters/projeto-em-jogo-7320615250578305025/" target="_blank" rel="noopener" class="btn-ghost rounded-full px-6 py-3 font-medium">Newsletter Projeto em Jogo ↗</a>
       <a href="assets/marcus-martin-curriculo.pdf" target="_blank" rel="noopener" class="btn-ghost rounded-full px-6 py-3 font-medium">Currículo (PDF)</a>
-      <!-- E-MAIL: descomente e preencha quando definir o endereço
-      <button type="button" class="btn-ghost rounded-full px-6 py-3 font-medium" data-copiar="SEU-EMAIL">Copiar e-mail</button> -->
+      <a href="mailto:marcus.martin.projetos@gmail.com" class="btn-ghost rounded-full px-6 py-3 font-medium">marcus.martin.projetos@gmail.com</a>
+      <button type="button" class="btn-ghost rounded-full px-6 py-3 font-medium" data-copiar="marcus.martin.projetos@gmail.com">Copiar e-mail</button>
     </div>
 
     <!-- por que existe uma versão jogável (para quem não clicar) -->
@@ -2533,6 +2641,7 @@
         <a href="https://www.linkedin.com/in/marcusvmartin/" target="_blank" rel="noopener" class="btn-accent px-4 py-3 px text-[10px] inline-flex items-center gap-2"><img src="assets/ui/carta.gif" alt="" width="32" height="64" style="image-rendering:pixelated;height:30px;width:auto;margin:-8px 0">ENVIAR MENSAGEM ▶</a>
         <a href="https://www.linkedin.com/newsletters/projeto-em-jogo-7320615250578305025/" target="_blank" rel="noopener" class="btn-ghost px-4 py-3 px text-[10px]">ASSINAR A TRANSMISSÃO</a>
         <a href="assets/marcus-martin-curriculo.pdf" target="_blank" rel="noopener" class="btn-ghost px-4 py-3 px text-[10px]">FICHA DO PERSONAGEM (PDF)</a>
+        <button type="button" class="btn-ghost px-4 py-3 px text-[10px]" data-copiar="marcus.martin.projetos@gmail.com">COPIAR E-MAIL</button>
       </div>
     </div>
 
@@ -2688,17 +2797,25 @@
     <a href="#outros-projetos" class="inline-block mt-6 text-sm t-accent font-medium underline underline-offset-4">E mais ${ativas.length - destaques.length} projetos ↓</a>`;
     // demais: viram sanfona na seção "Outros projetos" (a view executiva é movida para lá)
     const lista = $('#outros-lista');
-    ativas.filter(r => !destaques.includes(r.id)).forEach(r => {
+    // ordem de leitura do Modo Executivo ("ordemOutros" no #atlas-config); o que não estiver na lista vai para o fim
+    const ordem = cfg.ordemOutros || [];
+    const pos = r => { const i = ordem.indexOf(r.id); return i < 0 ? 999 : i; };
+    ativas.filter(r => !destaques.includes(r.id)).sort((a, b) => pos(a) - pos(b)).forEach(r => {
       const d = r.el.dataset, c = cor(r.el), v = r.el.querySelector('.view-exec');
       if (!v) return;
       r.el.classList.add('secundario');
       const det = document.createElement('details');
       det.className = 'outro-item'; det.id = 'outro-' + r.id;
       det.style.setProperty('--cc', c);
-      det.innerHTML = `<summary><span class="barra"></span><span><span class="font-display text-xl font-semibold block">${escapeHTML(d.cardTitulo || r.projeto)}</span>
+      // fotos e prêmios do case ficam visíveis já no resumo, sem precisar abrir
+      const fotos = [...v.querySelectorAll('img[data-foto]')].slice(0, 3);
+      const premios = [...v.querySelectorAll('.badge .b-title')].map(b => b.textContent.replace(/^Prêmio\s+/, '').trim());
+      det.innerHTML = `<summary><span class="o-cena"><img src="assets/cenas/${r.id}.png" alt="" loading="lazy" width="384" height="160" onerror="this.remove()"></span><span><span class="font-display text-xl font-semibold block">${escapeHTML(d.cardTitulo || r.projeto)}</span>
         <span class="text-sm t-muted block mt-1">${escapeHTML(d.cardResumo || '')}</span>
-        <span class="text-sm font-semibold block mt-1" style="color:${c}">${escapeHTML(d.cardDestaque || '')}</span></span>
-        <span class="abrir">Ver case <span>▾</span></span></summary>`;
+        <span class="text-sm font-semibold block mt-1" style="color:${c}">${escapeHTML(d.cardDestaque || '')}</span>
+        ${premios.length ? `<span class="o-premios">${premios.map(t => `<span>★ ${escapeHTML(t)}</span>`).join('')}</span>` : ''}</span>
+        ${fotos.length ? `<span class="o-fotos">${fotos.map(f => `<img src="${f.getAttribute('src')}" alt="${escapeHTML(f.alt)}" loading="lazy">`).join('')}</span>` : '<span></span>'}
+        <span class="abrir">Ver case completo <span>▾</span></span></summary>`;
       det.style.cssText += r.el.getAttribute('style') || '';
       det.appendChild(v);
       lista.appendChild(det);
