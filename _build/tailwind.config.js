@@ -4,6 +4,6 @@ module.exports = {
   content: ['./index.html'],
   theme: { extend: { fontFamily: {
     display: ['Fraunces', 'Georgia', 'serif'], sans: ['"IBM Plex Sans"', 'system-ui', 'sans-serif'],
-    mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'], pixel: ['"Press Start 2P"', 'monospace'], term: ['VT323', 'monospace'],
+    mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'], pixel: ['"Pixelify Sans"', 'monospace'], term: ['VT323', 'monospace'],
   } } },
 };

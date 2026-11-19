@@ -68,3 +68,13 @@ npx tailwindcss@3.4.16 -c _build/tailwind.config.js -i _build/in.css -o assets/c
 ## Créditos que precisam continuar no rodapé
 
 Pixel art do personagem, da Sala de Troféus, dos ícones e das cenas: adaptada do pack **Modern Interiors**, de LimeZu. A licença permite usar com crédito, mas não permite redistribuir nem revender os arquivos do pack.
+
+---
+
+## Identidade visual (desde nov/2026)
+
+- Cores da marca (as mesmas da newsletter Projeto em Jogo): azul-marinho `#26406E`, roxo `#7B4BB0`, turquesa `#2BC4D0`, rosa `#E86FAE`, amarelo `#F2C94C`, sobre creme `#F6F2EA`. Ficam no início do `<style>`, em `--marinho`, `--roxo` etc.
+- Turquesa e rosa não servem como cor de texto sobre o creme (contraste baixo): use só em detalhes.
+- Logo do topo e do rodapé: `assets/marca/` (avatar, assinatura e assinatura clara para fundo escuro).
+- Fonte pixel: Pixelify Sans, em `assets/fonts/` (tem acentos). Só em rótulos curtos do Modo Gamificado.
+- Ícones em pixel dos posts: `assets/ui/px-*.png`, já ajustados à grade de pixels.
